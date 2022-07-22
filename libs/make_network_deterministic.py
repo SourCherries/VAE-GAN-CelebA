@@ -52,8 +52,8 @@ def variational_bayes(h, n_code):
     z_log_sigma = 0.5 * tf.nn.tanh(utils.linear(h, n_code, name='log_sigma')[0])
 
     # Sample from noise distribution p(eps) ~ N(0, 1)
-    epsilon = tf.random_normal(tf.stack([tf.shape(h)[0], n_code]))
-    print(epsilon)
+    # epsilon = tf.random_normal(tf.stack([tf.shape(h)[0], n_code]))
+    epsilon = tf.zeros(tf.stack([tf.shape(h)[0], n_code]))
 
     # Sample from posterior
     z = z_mu + tf.multiply(epsilon, tf.exp(z_log_sigma))
