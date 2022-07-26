@@ -105,7 +105,8 @@ def make_network():
         Z = utils.linear(H, n_hidden)[0]
 
     print("Saving Hs to pickle ...")
-    pickle.dump(Hs, "HsFromEncoder")
+    with open("HsFromEncoder.bin","wb") as f:
+        pickle.dump(Hs, "HsFromEncoder")
 
     n_code = 1024
 
