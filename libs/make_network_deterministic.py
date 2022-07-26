@@ -11,6 +11,8 @@ import tensorflow as tf
 import libs.utils as utils
 import numpy as np
 
+import pickle
+
 def encoder(x, is_training, channels, filter_sizes, activation=tf.nn.tanh, reuse=None):
     # Set the input to a common variable name, h, for hidden layer
     h = x
@@ -101,6 +103,9 @@ def make_network():
     with tf.variable_scope('encoder'):
         H, Hs = encoder(X, is_training, channels, filter_sizes, activation)
         Z = utils.linear(H, n_hidden)[0]
+
+    print("Saving Hs to pickle ...")
+    pickle.dump(Hs, "HsFromEncoder")
 
     n_code = 1024
 
